@@ -3,7 +3,6 @@ import { Header } from './components/header/Header';
 import AppRoutes from './pages/Routes';
 
 function App() {
-
   return (
     <>
     <div className="min-h-full">
