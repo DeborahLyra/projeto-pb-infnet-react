@@ -15,8 +15,8 @@ export function Header() {
     { name: "Ranking", href: "/ranking", current: false },
   ];
   const userNavigation = [
-    { name: "Your Profile", href: "#" },
-    { name: "Sign out", href: "#" },
+    { name: "Your Profile", href: "/profile" },
+    { name: "Sign out", href: "/login" },
   ];
 
   function classNames(...classes) {

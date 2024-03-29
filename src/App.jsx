@@ -3,11 +3,14 @@ import { Header } from './components/header/Header';
 import AppRoutes from './pages/Routes';
 
 function App() {
+  const rotasSemHeader = [
+    "/login", "/signin", "forgotPassword"
+  ]
   return (
     <>
     <div className="min-h-full">
         {
-          location.pathname != "/login" ? <Header /> : null
+          rotasSemHeader.includes(location.pathname) ? null : <Header />
         }
         
         <main>
