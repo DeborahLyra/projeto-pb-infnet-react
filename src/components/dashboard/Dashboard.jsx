@@ -8,12 +8,12 @@ export function Dashboard() {
   
   const data = [
     {
-      nome: "Topico 1",
+      nome: "The Worried Pug",
       comentarios: false,
     },
     {
-      nome: "Topico 2",
-      comentarios: true,
+      nome: "The Worried Cat",
+      comentarios: false,
     },
   ];
 
@@ -37,8 +37,7 @@ export function Dashboard() {
                   alt=""
                 />
                 <div className={styles.authorInfo}>
-                  <strong>The Worried Pug</strong>
-                  <span>Web Developer</span>
+                  <strong>{topico.nome}</strong>
                 </div>
               </div>
               <time title="05 de março as 12h" dateTime="2024-03-05 12:00:00">
@@ -51,7 +50,7 @@ export function Dashboard() {
                   <p>
                     {" "}
                     Acabei de subir mais um projeto no meu portifa. É um projeto
-                    que fiz no NLW Return, evento da Rocketseat. O nome do
+                    que fiz no NLW Return, evento da Infnet. O nome do
                     projeto é DoctorCare 🚀{" "}
                   </p>
                   <p>
@@ -59,7 +58,7 @@ export function Dashboard() {
                   </p>
                   <p>
                     <a href="#">#novoprojeto</a> <a href="#">#nlw</a>{" "}
-                    <a href="#">#rocketseat</a>{" "}
+                    <a href="#">#infnet</a>{" "}
                   </p>
                   <div className="flex mt-3 gap-2">
                     <button onClick={() => atualizarComentarios(index)}>
