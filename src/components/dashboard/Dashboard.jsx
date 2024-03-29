@@ -4,7 +4,7 @@ import { Avatar } from "../avatar/Avatar";
 import { Trash, ThumbsUp, ArrowCircleDown } from 'phosphor-react'
 import { useState } from "react";
 
-export function Dashboard({ author, content }) {
+export function Dashboard() {
   
   const data = [
     {
