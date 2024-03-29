@@ -9,6 +9,7 @@ import LoginPage from './LoginPage';
 const AppRoutes  = () => (
   <BrowserRouter>
     <Routes>
+      <Route exact path="/" element={<DashboardPage/>} />
       <Route exact path="/dashboard" element={<DashboardPage/>} />
       <Route exact path="/ranking" element={<RankingPage/>} />
       <Route exact path="/signIn" element={<SignInPage/>} />
