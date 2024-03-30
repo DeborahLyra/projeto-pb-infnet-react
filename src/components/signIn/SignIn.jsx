@@ -1,7 +1,17 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { ChatsTeardrop } from "phosphor-react";
 
 export default function SignIn() {
   return (
+  <>
+     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <ChatsTeardrop className="mx-auto h-24 w-auto" />
+          <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-white-900">
+            ForunTalk
+          </h2>
+        </div>
+      </div>
     <form>
       <div className="space-y-12">
         <div className="border-b border-white-900/10 pb-12">
@@ -141,5 +151,6 @@ export default function SignIn() {
         </button>
       </div>
     </form>
+  </>
   );
 }

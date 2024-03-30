@@ -50,14 +50,14 @@ export function Dashboard() {
                   <p>
                     {" "}
                     Acabei de subir mais um projeto no meu portifa. É um projeto
-                    que fiz no NLW Return, evento da Infnet. O nome do
+                    que fiz no evento da Infnet. O nome do
                     projeto é DoctorCare 🚀{" "}
                   </p>
                   <p>
                     👉<a href="#"> jane.design/doctorcare </a>
                   </p>
                   <p>
-                    <a href="#">#novoprojeto</a> <a href="#">#nlw</a>{" "}
+                    <a href="#">#novoprojeto</a> <a href="#">#dev</a>{" "}
                     <a href="#">#infnet</a>{" "}
                   </p>
                   <div className="flex mt-3 gap-2">
