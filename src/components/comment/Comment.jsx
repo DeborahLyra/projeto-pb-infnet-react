@@ -3,29 +3,44 @@ import { useState } from 'react'
 import { Avatar } from '../avatar/Avatar'
 import styles from './Comment.module.css'
 import { Trash, ThumbsUp } from 'phosphor-react'
+import { format, formatDistanceToNow } from "date-fns";
+import ptBr from "date-fns/locale/pt-BR";
 
-export function Comment({content, onDeleteComment }) {
-    const [likeCount, setLikeCount] = useState(0)
+export function Comment({ content, onDeleteComment }) {
+    const [likeCount, setLikeCount] = useState(content.likeCount)
 
     const handelDeleteComment = () => {
-            onDeleteComment(content)
+        onDeleteComment(content)
     }
 
     const handleLikes = () => {
         setLikeCount(likeCount + 1)
     }
+
+    const dateFormated = (publishedAt) =>
+        format(publishedAt, "dd 'de' LLLL 'as' HH:mm'h'", {
+            locale: ptBr,
+        });
+
+    const dateFromNow = (publishedAt) =>
+        formatDistanceToNow(publishedAt, {
+            locale: ptBr,
+            addSuffix: true,
+        });
     return (
         <div className={styles.comment}>
-            <Avatar hasBorder={false} src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D" />
+            <Avatar hasBorder={false} src={content.author.avatarUrl} />
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>
                     <header>
                         <div className={styles.autorAndTime}>
-                            <strong>Suspicious Pug</strong>
-                            <time title='05 de março as 12h' dateTime="2024-03-05 12:00:00">Há cerca de 20min</time>
+                            <strong>{content.author.name}</strong>
+                            <time title={dateFormated(content.publishedAt)}>
+                                {dateFromNow(content.publishedAt)}
+                            </time>
                         </div>
                         <button title='trash'
-                        onClick={handelDeleteComment}>
+                            onClick={handelDeleteComment}>
                             <Trash size={24}
                             />
                         </button>

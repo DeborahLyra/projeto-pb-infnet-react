@@ -6,11 +6,23 @@ import { Trash, ThumbsUp, ArrowCircleDown } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { format, formatDistanceToNow } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
+import axios from "axios";
 
 export function Posts({ content }) {
   const [topico, setTopico] = useState(content);
   const [newCommentText, setNewCommentText] = useState("");
-  const [comments, setComments] = useState(topico.comments);
+  const [comments, setComments] = useState([]);
+
+
+  const getData = async () => {
+    const response = await axios.get(`http://localhost:3000/comments?postId=${topico.id}`)
+    const dataJson = await response.data
+    setComments(dataJson)
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   const dateFormated = (publishedAt) =>
     format(publishedAt, "dd 'de' LLLL 'as' HH:mm'h'", {
@@ -44,13 +56,23 @@ export function Posts({ content }) {
   const handleNewComment = () => {
     event.preventDefault();
 
-    //const newCommentText = event.target.comment.value //coloca o name na textarea aí consegue pegar com o target
+    const comment = {
+      "id": 1,
+      "comment": newCommentText,
+      "author": {
+        "name": "The Worried Pug",
+        "role": "Web Developer",
+        "avatarUrl": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
+      },
+      "publishedAt": new Date(),
+      "likeCount": 2
+    }
 
-    setComments([...comments, newCommentText]);
+    setComments([...comments, comment]);
 
-    //event.target.comment.value = ''
+   
 
-    setNewCommentText(""); //precisa colocar que o value da textarea é = ao newComment para que possa apagar o  que tem escrito na textarea
+    setNewCommentText(""); 
   };
 
   const isBtnDisabled = newCommentText.length === 0;
