@@ -30,7 +30,7 @@ export function Comment({content, onDeleteComment }) {
                             />
                         </button>
                     </header>
-                    <p>{content}</p>
+                    <p>{content.comment}</p>
                 </div>
                 <footer>
                     <button onClick={(handleLikes)}>
