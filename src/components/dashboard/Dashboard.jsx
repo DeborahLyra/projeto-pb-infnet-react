@@ -113,9 +113,12 @@ export function Dashboard() {
 
             {topico.comment ? (
               <>
-                <form onSubmit={handleNewComment}  className={styles.commentForm}>
+                <form onSubmit={handleNewComment} className={styles.commentForm}>
                   <strong>Deixe seu comentário</strong>
-                  <textarea placeholder="deixe um comentário" onChange={handleNewCommentChange} />
+                  <textarea
+                    placeholder="deixe um comentário"
+                    onChange={handleNewCommentChange}
+                    value={newCommentText} />
                   <footer>
                     <button type='submit' disabled={isBtnDisabled}>Publicar</button>
                   </footer>
