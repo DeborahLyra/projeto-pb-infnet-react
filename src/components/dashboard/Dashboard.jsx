@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { Posts } from "../posts/Posts";
 import axios from "axios";
+import { Plus } from "phosphor-react";
+import styled from "styled-components";
 
 export function Dashboard() {
 
@@ -19,6 +21,7 @@ export function Dashboard() {
 
   return (
     <>
+      <PlusButton><Plus size={32} /></PlusButton>
       {topicos.map((topico, index) => {
         return (
           <Posts key={index} content={topico} />
@@ -27,3 +30,24 @@ export function Dashboard() {
     </>
   );
 }
+
+
+const PlusButton = styled.button`
+  border: 3px solid var(--green-500);
+  color:var(--green-500);
+  border-radius: 50%;
+  padding: 8px;
+  margin-bottom: 1rem;
+  margin-right: 5rem;
+  background-color: #0000;
+  cursor: pointer;
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  &:hover{
+    background-color: var(--green-500);
+    color: black;
+  }
+`
