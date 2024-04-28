@@ -46,6 +46,26 @@ export function Dashboard() {
 
   }
 
+  const deleteComment = (commentToDelete) => {
+    const newCommentList = comments.filter(comment => {
+      return comment !== commentToDelete
+    })
+    setComments(newCommentList)
+  }
+
+  const handleNewComment = () => {
+    event.preventDefault()
+
+    //const newCommentText = event.target.comment.value //coloca o name na textarea aí consegue pegar com o target
+
+    setComments([...comments, newCommentText])
+
+    //event.target.comment.value = ''
+
+    setNewCommentText('') //precisa colocar que o value da textarea é = ao newComment para que possa apagar o  que tem escrito na textarea
+  }
+
+
   const isBtnDisabled = newCommentText.length === 0
 
   return (
@@ -93,9 +113,9 @@ export function Dashboard() {
 
             {topico.comment ? (
               <>
-                <form className={styles.commentForm}>
+                <form onSubmit={handleNewComment}  className={styles.commentForm}>
                   <strong>Deixe seu comentário</strong>
-                  <textarea placeholder="deixe um comentário"  onChange={handleNewCommentChange}/>
+                  <textarea placeholder="deixe um comentário" onChange={handleNewCommentChange} />
                   <footer>
                     <button type='submit' disabled={isBtnDisabled}>Publicar</button>
                   </footer>
@@ -103,9 +123,15 @@ export function Dashboard() {
                 </form>
 
                 <div className={styles.commentList}>
-                  <Comment />
-                  <Comment />
-                  <Comment />
+                  {
+                    comments.map(comment => {
+                      return <Comment
+                        content={comment}
+                        key={comment}
+                        onDeleteComment={deleteComment}
+                      />
+                    })
+                  }
                 </div>
               </>
             ) : null}

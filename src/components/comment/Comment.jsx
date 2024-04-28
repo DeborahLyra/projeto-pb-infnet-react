@@ -1,8 +1,19 @@
+/* eslint-disable react/prop-types */
+import { useState } from 'react'
 import { Avatar } from '../avatar/Avatar'
 import styles from './Comment.module.css'
 import { Trash, ThumbsUp } from 'phosphor-react'
 
-export function Comment() {
+export function Comment({content, onDeleteComment }) {
+    const [likeCount, setLikeCount] = useState(0)
+
+    const handelDeleteComment = () => {
+            onDeleteComment(content)
+    }
+
+    const handleLikes = () => {
+        setLikeCount(likeCount + 1)
+    }
     return (
         <div className={styles.comment}>
             <Avatar hasBorder={false} src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D" />
@@ -13,16 +24,18 @@ export function Comment() {
                             <strong>Suspicious Pug</strong>
                             <time title='05 de março as 12h' dateTime="2024-03-05 12:00:00">Há cerca de 20min</time>
                         </div>
-                        <button title='trash'>
-                            <Trash size={24} />
+                        <button title='trash'
+                        onClick={handelDeleteComment}>
+                            <Trash size={24}
+                            />
                         </button>
                     </header>
-                    <p>Muito bom!</p>
+                    <p>{content}</p>
                 </div>
                 <footer>
-                    <button>
+                    <button onClick={(handleLikes)}>
                         <ThumbsUp />
-                        Gostei <span>20</span>
+                        Gostei <span>{likeCount}</span>
                     </button>
                 </footer>
             </div>
