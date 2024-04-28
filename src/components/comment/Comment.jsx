@@ -5,9 +5,14 @@ import styles from './Comment.module.css'
 import { Trash, ThumbsUp } from 'phosphor-react'
 import { format, formatDistanceToNow } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
+import axios from 'axios';
 
 export function Comment({ content, onDeleteComment }) {
     const [likeCount, setLikeCount] = useState(content.likeCount)
+
+    const putData = async () => {
+        const response = await axios.put(`http://localhost:3000/comments/${content.id}`, content)
+      }
 
     const handelDeleteComment = () => {
         onDeleteComment(content)
@@ -15,6 +20,8 @@ export function Comment({ content, onDeleteComment }) {
 
     const handleLikes = () => {
         setLikeCount(likeCount + 1)
+        content.likeCount = likeCount
+        putData()
     }
 
     const dateFormated = (publishedAt) =>

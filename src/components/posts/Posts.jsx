@@ -20,6 +20,14 @@ export function Posts({ content }) {
     setComments(dataJson)
   }
 
+  const postData = async (content) => {
+    const response = await axios.post(`http://localhost:3000/comments`, content)
+  }
+
+  const deleteData = async (id) => {
+    const response = await axios.delete(`http://localhost:3000/comments/${id}`)
+  }
+
   useEffect(() => {
     getData()
   }, [])
@@ -47,17 +55,16 @@ export function Posts({ content }) {
   };
 
   const deleteComment = (commentToDelete) => {
-    const newCommentList = comments.filter((comment) => {
-      return comment !== commentToDelete;
-    });
-    setComments(newCommentList);
+    deleteData(commentToDelete.id)
+    getData() 
   };
 
   const handleNewComment = () => {
     event.preventDefault();
 
     const comment = {
-      "id": 1,
+      "id": comments.length + 10,
+      "postId": topico.id,
       "comment": newCommentText,
       "author": {
         "name": "The Worried Pug",
@@ -67,12 +74,9 @@ export function Posts({ content }) {
       "publishedAt": new Date(),
       "likeCount": 2
     }
-
-    setComments([...comments, comment]);
-
-   
-
+    postData(comment)
     setNewCommentText(""); 
+    getData() 
   };
 
   const isBtnDisabled = newCommentText.length === 0;
