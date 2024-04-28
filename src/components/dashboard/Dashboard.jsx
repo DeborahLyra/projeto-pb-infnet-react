@@ -1,29 +1,52 @@
+/* eslint-disable react/jsx-key */
 import styles from "./Dashboard.module.css";
 import { Comment } from "../comment/Comment";
 import { Avatar } from "../avatar/Avatar";
 import { Trash, ThumbsUp, ArrowCircleDown } from 'phosphor-react'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBr from 'date-fns/locale/pt-BR'
 
 export function Dashboard() {
-  
-  const data = [
-    {
-      nome: "The Worried Pug",
-      comentarios: false,
-    },
-    {
-      nome: "The Worried Cat",
-      comentarios: false,
-    },
-  ];
 
-  const [topicos, setTopicos] = useState(data);
+  const [topicos, setTopicos] = useState([]);
+  const [newCommentText, setNewCommentText] = useState('')
+  const [comments, setComments] = useState([
+    'muito bacana',
+  ])
+
+  const fetchData = async () => {
+    const response = await fetch('src/mock/posts.json')
+    const dataJson = await response.json()
+    setTopicos(dataJson)
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const dateFormated = (publishedAt) => format(publishedAt, "dd 'de' LLLL 'as' HH:mm'h'", {
+    locale: ptBr,
+  })
+
+  const dateFromNow = (publishedAt) => formatDistanceToNow(publishedAt, {
+    locale: ptBr,
+    addSuffix: true,
+  })
 
   const atualizarComentarios = (index) => {
     const novosTopicos = [...topicos];
-    novosTopicos[index].comentarios = !novosTopicos[index].comentarios;
+    novosTopicos[index].comment = !novosTopicos[index].comment;
     setTopicos(novosTopicos);
   };
+
+
+  const handleNewCommentChange = () => {
+    setNewCommentText(event.target.value)
+
+  }
+
+  const isBtnDisabled = newCommentText.length === 0
 
   return (
     <>
@@ -33,55 +56,50 @@ export function Dashboard() {
             <header>
               <div className={styles.author}>
                 <Avatar
-                  src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
+                  src={topico.author.avatarUrl}
                   alt=""
                 />
                 <div className={styles.authorInfo}>
-                  <strong>{topico.nome}</strong>
+                  <strong>{topico.author.name}</strong>
                 </div>
               </div>
-              <time title="05 de março as 12h" dateTime="2024-03-05 12:00:00">
-                Publicado há 1 hora
+              <time title={dateFormated(topico.publishedAt)} >
+                {dateFromNow(topico.publishedAt)}
               </time>
             </header>
 
             <div className={styles.content}>
-                  <p>Fala galeraa 👋</p>
-                  <p>
-                    {" "}
-                    Acabei de subir mais um projeto no meu portifa. É um projeto
-                    que fiz no evento da Infnet. O nome do
-                    projeto é DoctorCare 🚀{" "}
-                  </p>
-                  <p>
-                    👉<a href="#"> jane.design/doctorcare </a>
-                  </p>
-                  <p>
-                    <a href="#">#novoprojeto</a> <a href="#">#dev</a>{" "}
-                    <a href="#">#infnet</a>{" "}
-                  </p>
-                  <div className="flex mt-3 gap-2">
-                    <button onClick={() => atualizarComentarios(index)}>
-                      <ArrowCircleDown size={24} />
-                    </button>
-                    <button>
-                        <ThumbsUp size={24} />
-                    </button>
-                    <button title='trash'>
-                        <Trash size={24} />
-                    </button>
-                  </div>
+              {
+                topico.content.map(line => {
+                  if (line.type == 'paragraph') {
+                    return <p key={line.content}>{line.content}</p>
+                  } else if (line.type == 'link') {
+                    return <p key={line.content}><a href="#">{line.content}</a></p>
+                  }
+                })
+              }
+            </div>
+            <div className="flex mt-3 gap-2">
+              <button onClick={() => atualizarComentarios(index)}>
+                <ArrowCircleDown size={24} />
+              </button>
+              <button>
+                <ThumbsUp size={24} />
+              </button>
+              <button title='trash'>
+                <Trash size={24} />
+              </button>
             </div>
 
-            {topico.comentarios ? (
+            {topico.comment ? (
               <>
                 <form className={styles.commentForm}>
                   <strong>Deixe seu comentário</strong>
-                  <textarea placeholder="deixe um comentário" />
+                  <textarea placeholder="deixe um comentário"  onChange={handleNewCommentChange}/>
                   <footer>
-                    <button type="submit">Publicar</button>
+                    <button type='submit' disabled={isBtnDisabled}>Publicar</button>
                   </footer>
-                  {/* precisou criar esse footer para alterar o bnt no css */}
+
                 </form>
 
                 <div className={styles.commentList}>
