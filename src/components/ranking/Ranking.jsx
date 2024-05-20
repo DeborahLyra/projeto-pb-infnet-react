@@ -1,3 +1,5 @@
+import './styles.css'
+
 const usuarios = [
     {
       name: 'Leslie Alexander',
@@ -45,22 +47,22 @@ const usuarios = [
   
   export default function Ranking() {
     return (
-      <ul role="list" className="divide-y divide-gray-100">
+      <ul role="list" className="ranking-list">
         {usuarios.map((usuario) => (
-          <li key={usuario.email} className="flex justify-between gap-x-6 py-5">
-            <div className="flex min-w-0 gap-x-4">
-              <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={usuario.imageUrl} alt="" />
-              <div className="min-w-0 flex-auto">
-                <p className="text-sm font-semibold leading-6 text-white-900">{usuario.name}</p>
-                <p className="mt-1 truncate text-xs leading-5 text-white-500">{usuario.email}</p>
+          <li key={usuario.email} className="ranking-item">
+            <div className="user-info">
+              <img className="user-avatar" src={usuario.imageUrl} alt="" />
+              <div className="user-details">
+                <p className="user-name">{usuario.name}</p>
+                <p className="user-email">{usuario.email}</p>
               </div>
             </div>
-            <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-              <p className="text-sm leading-6 text-white-900">{usuario.score} pontos</p>
+            <div className="user-score-container">
+              <p className="user-score">{usuario.score} pontos</p>
             </div>
           </li>
         ))}
       </ul>
-    )
+    );
   }
   

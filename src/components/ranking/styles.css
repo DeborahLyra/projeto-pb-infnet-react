@@ -1,0 +1,41 @@
+/* src/styles/Ranking.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.ranking-list {
+  @apply divide-y divide-gray-100;
+}
+
+.ranking-item {
+  @apply flex justify-between gap-x-6 py-5;
+}
+
+.user-info {
+  @apply flex min-w-0 gap-x-4;
+}
+
+.user-avatar {
+  @apply h-12 w-12 flex-none rounded-full bg-gray-50;
+}
+
+.user-details {
+  @apply min-w-0 flex-auto;
+}
+
+.user-name {
+  @apply text-sm font-semibold leading-6 text-gray-100; 
+}
+
+.user-email {
+  @apply mt-1 truncate text-xs leading-5 text-gray-200; 
+}
+
+.user-score-container {
+  @apply hidden shrink-0 sm:flex sm:flex-col sm:items-end;
+}
+
+.user-score {
+  @apply text-sm leading-6 text-gray-100; 
+}
