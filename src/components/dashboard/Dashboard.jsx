@@ -10,6 +10,7 @@ export function Dashboard() {
 
   const [topicos, setTopicos] = useState([]);
   const [open, setOpen] = useState(false)
+  const [newPost, setNewPost] = useState('');
 
   const fetchData = async () => {
     const response = await axios.get('http://localhost:3000/posts')
@@ -25,6 +26,20 @@ export function Dashboard() {
     setOpen(!open)
   }
 
+  const handleSubmitNewPost = async () => {
+    if (newPost.trim()) {
+      try {
+        const response = await axios.post('http://localhost:3000/posts', { content: newPost });
+        setTopicos([...topicos, response.data]);
+        setNewPost('');
+        setOpen(false);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+
   return (
     <>
       <PlusButton onClick={handleAddPost}><Plus size={32} /></PlusButton>
@@ -33,7 +48,13 @@ export function Dashboard() {
           <Posts key={index} content={topico} />
         );
       })}
-      <DialogComponent open={open} onClose= {handleAddPost}/>
+      <DialogComponent 
+      open={open} 
+      onClose= {handleAddPost}
+      // handleSubmitNewPost = {handleSubmitNewPost}
+      // newPost={newPost} 
+      // setNewPost={setNewPost} 
+      />
     </>
   );
 }

@@ -12,7 +12,7 @@ export function Posts({ content }) {
   const [topico, setTopico] = useState(content);
   const [newCommentText, setNewCommentText] = useState("");
   const [comments, setComments] = useState([]);
-
+  const [likeCount, setLikeCount] = useState(content.likes)
 
   const getData = async () => {
     const response = await axios.get(`http://localhost:3000/comments?postId=${topico.id}`)
@@ -26,6 +26,11 @@ export function Posts({ content }) {
 
   const deleteData = async (id) => {
     const response = await axios.delete(`http://localhost:3000/comments/${id}`)
+  }
+
+  const putData = async () => {
+    const response = await axios.put(`http://localhost:3000/comments/${content.id}`, content)
+    return response
   }
 
   useEffect(() => {
@@ -81,6 +86,12 @@ export function Posts({ content }) {
 
   const isBtnDisabled = newCommentText.length === 0;
 
+  const handleLikes = () => {
+    setLikeCount(likeCount + 1)
+    content.likes = likeCount
+    putData()
+}
+
   return (
     <>
       <article className={styles.posts}>
@@ -113,8 +124,9 @@ export function Posts({ content }) {
           <button onClick={() => atualizarComentarios()}>
             <ArrowCircleDown size={24} />
           </button>
-          <button>
-            <ThumbsUp size={24} />
+          <button className={styles.likeBtn}>
+            <ThumbsUp size={24} onClick={(handleLikes)}/>
+            <span>{likeCount}</span>
           </button>
           <button title="trash">
             <Trash size={24} />
