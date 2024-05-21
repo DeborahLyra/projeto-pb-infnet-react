@@ -4,10 +4,12 @@ import { Posts } from "../posts/Posts";
 import axios from "axios";
 import { Plus } from "phosphor-react";
 import styled from "styled-components";
+import {DialogComponent} from "../dialog/Dialog";
 
 export function Dashboard() {
 
   const [topicos, setTopicos] = useState([]);
+  const [open, setOpen] = useState(false)
 
   const fetchData = async () => {
     const response = await axios.get('http://localhost:3000/posts')
@@ -19,14 +21,19 @@ export function Dashboard() {
     fetchData()
   }, [])
 
+  const handleAddPost = () => {
+    setOpen(!open)
+  }
+
   return (
     <>
-      <PlusButton><Plus size={32} /></PlusButton>
+      <PlusButton onClick={handleAddPost}><Plus size={32} /></PlusButton>
       {topicos.map((topico, index) => {
         return (
           <Posts key={index} content={topico} />
         );
       })}
+      <DialogComponent open={open} onClose= {handleAddPost}/>
     </>
   );
 }
