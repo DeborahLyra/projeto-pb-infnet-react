@@ -31,7 +31,7 @@
         }
       ],
       "publishedAt": "2024-04-30T20:20:00.000Z",
-      "likes": 1
+      "likes": 48
     },
     {
       "id": "2",
@@ -102,18 +102,6 @@
       "likes": 2
     },
     {
-      "id": "2",
-      "postId": 1,
-      "comment": "Maravilha!",
-      "author": {
-        "name": "The Worried Pug",
-        "role": "Web Developer",
-        "avatarUrl": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
-      },
-      "publishedAt": "2024-03-30T20:20:00.000Z",
-      "likeCount": 9
-    },
-    {
       "id": "3",
       "postId": 2,
       "comment": "Muito bom !",
@@ -132,21 +120,57 @@
       "author": {
         "name": "The Worried Pug",
         "role": "Web Developer",
-        "avatarUrl": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
+        "avatarUrl": "https://images.unsplash.com/photo-15180203821 13-a7e8fc38eac9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
       },
       "publishedAt": "2024-03-30T20:20:00.000Z",
       "likeCount": 1
     },
     {
-      "id": 12,
+      "id": "1716420927186",
       "postId": "1",
-      "comment": "rfrf",
+      "comment": "1",
       "author": {
         "name": "The Worried Pug",
         "role": "Web Developer",
         "avatarUrl": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
       },
-      "publishedAt": "2024-05-21T01:04:27.793Z",
+      "publishedAt": "2024-05-22T23:35:27.186Z",
+      "likeCount": 2
+    },
+    {
+      "id": "1716420933000",
+      "postId": "1",
+      "comment": "2",
+      "author": {
+        "name": "The Worried Pug",
+        "role": "Web Developer",
+        "avatarUrl": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
+      },
+      "publishedAt": "2024-05-22T23:35:33.000Z",
+      "likeCount": 2
+    },
+    {
+      "id": "1716420936217",
+      "postId": "1",
+      "comment": "3",
+      "author": {
+        "name": "The Worried Pug",
+        "role": "Web Developer",
+        "avatarUrl": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
+      },
+      "publishedAt": "2024-05-22T23:35:36.217Z",
+      "likeCount": 2
+    },
+    {
+      "id": "1716420940126",
+      "postId": "1",
+      "comment": "4",
+      "author": {
+        "name": "The Worried Pug",
+        "role": "Web Developer",
+        "avatarUrl": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
+      },
+      "publishedAt": "2024-05-22T23:35:40.126Z",
       "likeCount": 2
     }
   ]

@@ -10,7 +10,6 @@ export function Dashboard() {
 
   const [topicos, setTopicos] = useState([]);
   const [open, setOpen] = useState(false)
-  const [newPost, setNewPost] = useState('');
 
   const fetchData = async () => {
     const response = await axios.get('http://localhost:3000/posts')
@@ -26,12 +25,42 @@ export function Dashboard() {
     setOpen(!open)
   }
 
-  const handleSubmitNewPost = async () => {
+  const handleSubmitNewPost = async (newPost) => {
     if (newPost.trim()) {
+
+      const post = {
+        "id": String(new Date().getTime()),
+        "showComments": false,
+        "author": {
+          "name": "The Worried Pug",
+          "role": "Web Developer",
+          "avatarUrl": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "content": newPost
+          },
+          {
+            "type": "link",
+            "content": "jane.design/doctorcare"
+          },
+          {
+            "type": "link",
+            "content": "#novoprojeto"
+          },
+          {
+            "type": "link",
+            "content": "#infnet"
+          }
+        ],
+        "publishedAt": new Date(),
+        "likes": 0
+      }
+
       try {
-        const response = await axios.post('http://localhost:3000/posts', { content: newPost });
+        const response = await axios.post('http://localhost:3000/posts',  post );
         setTopicos([...topicos, response.data]);
-        setNewPost('');
         setOpen(false);
       } catch (error) {
         console.error(error);
@@ -39,21 +68,29 @@ export function Dashboard() {
     }
   };
 
+  const onDelete = async(id) => {
+    await deleteData(id);
+    await fetchData();
+  }
+
+  const deleteData = async (id) => {
+    const response = await axios.delete(`http://localhost:3000/posts/${id}`);
+    return response;
+  }
+
 
   return (
     <>
       <PlusButton onClick={handleAddPost}><Plus size={32} /></PlusButton>
       {topicos.map((topico, index) => {
         return (
-          <Posts key={index} content={topico} />
+          <Posts key={index} content={topico} onDelete={onDelete} />
         );
       })}
       <DialogComponent 
       open={open} 
       onClose= {handleAddPost}
-      // handleSubmitNewPost = {handleSubmitNewPost}
-      // newPost={newPost} 
-      // setNewPost={setNewPost} 
+      onSubmit={handleSubmitNewPost}
       />
     </>
   );

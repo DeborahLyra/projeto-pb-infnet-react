@@ -8,7 +8,7 @@ import { format, formatDistanceToNow } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
 import axios from "axios";
 
-export function Posts({ content }) {
+export function Posts({ content, onDelete }) {
   const [topico, setTopico] = useState(content);
   const [newCommentText, setNewCommentText] = useState("");
   const [comments, setComments] = useState([]);
@@ -29,7 +29,7 @@ export function Posts({ content }) {
   }
 
   const putData = async () => {
-    const response = await axios.put(`http://localhost:3000/comments/${content.id}`, content)
+    const response = await axios.put(`http://localhost:3000/posts/${content.id}`, content)
     return response
   }
 
@@ -59,16 +59,16 @@ export function Posts({ content }) {
     setNewCommentText(event.target.value);
   };
 
-  const deleteComment = (commentToDelete) => {
-    deleteData(commentToDelete.id)
+  const deleteComment = async (commentToDelete) => {
+    await deleteData(commentToDelete.id)
     getData() 
   };
 
-  const handleNewComment = () => {
+  const handleNewComment = async () => {
     event.preventDefault();
 
     const comment = {
-      "id": comments.length + 10,
+      "id": String(new Date().getTime()),
       "postId": topico.id,
       "comment": newCommentText,
       "author": {
@@ -79,20 +79,24 @@ export function Posts({ content }) {
       "publishedAt": new Date(),
       "likeCount": 2
     }
-    postData(comment)
+    await postData(comment)
     setNewCommentText(""); 
     getData() 
   };
 
   const isBtnDisabled = newCommentText.length === 0;
 
-  const handleLikes = () => {
-    setLikeCount(likeCount + 1)
-    content.likes = likeCount
-    putData()
+  const handleLikes = async() => {
+    setLikeCount(prevLikeCount => {
+      const updatedLikeCount = prevLikeCount + 1;
+      content.likes = updatedLikeCount;
+      putData();
+      return updatedLikeCount;
+  });
+
 }
 
-  return (
+return (
     <>
       <article className={styles.posts}>
         <header>
@@ -128,7 +132,7 @@ export function Posts({ content }) {
             <ThumbsUp size={24} onClick={(handleLikes)}/>
             <span>{likeCount}</span>
           </button>
-          <button title="trash">
+          <button title="trash" onClick={(()=>{onDelete(content.id)})}>
             <Trash size={24} />
           </button>
         </div>

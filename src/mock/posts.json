@@ -65,7 +65,7 @@
     "publishedAt": "2024-03-30T20:20:00.000Z",
     "comments": [
       {
-        "id": 1,
+        "id": 3,
         "comment": "Muito bom !",
         "author": {
           "name": "The Worried Pug",
@@ -76,7 +76,7 @@
         "likeCount": 2
       },
       {
-        "id": 2,
+        "id": 4,
         "comment": "Maravilha!",
         "author": {
           "name": "The Worried Pug",
