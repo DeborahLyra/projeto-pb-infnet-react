@@ -1,5 +1,5 @@
-import { ChatsTeardrop } from "phosphor-react";
 import React from "react";
+import { ChatsTeardrop } from "phosphor-react";
 
 export function Login() {
   return (

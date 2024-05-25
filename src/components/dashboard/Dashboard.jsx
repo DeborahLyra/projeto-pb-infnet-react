@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+import React from "react";
 import { useEffect, useState } from "react";
 import { Posts } from "../posts/Posts";
 import axios from "axios";
@@ -60,8 +61,12 @@ export function Dashboard() {
 
       try {
         const response = await axios.post('http://localhost:3000/posts',  post );
-        setTopicos([...topicos, response.data]);
-        setOpen(false);
+        if (response && response.data) {
+          setTopicos([...topicos, response.data]);
+          setOpen(false);
+        } else {
+          console.error("Response or data is undefined");
+        }
       } catch (error) {
         console.error(error);
       }
@@ -81,7 +86,7 @@ export function Dashboard() {
 
   return (
     <>
-      <PlusButton onClick={handleAddPost}><Plus size={32} /></PlusButton>
+      <PlusButton id="add-post-button" onClick={handleAddPost}><Plus size={32} /></PlusButton>
       {topicos.map((topico, index) => {
         return (
           <Posts key={index} content={topico} onDelete={onDelete} />

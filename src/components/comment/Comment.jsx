@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React from "react";
 import { useState } from 'react'
 import { Avatar } from '../avatar/Avatar'
 import styles from './Comment.module.css'

@@ -1,6 +1,7 @@
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { PhotoIcon } from "@heroicons/react/24/solid";
 import { ChatsTeardrop } from "phosphor-react";
-import './styles.css'
+import './styles.css';
+import React from "react";
 
 export default function SignIn() {
   return (

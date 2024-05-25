@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+import React from "react";
 import styles from "./Posts.module.css";
 import { Comment } from "../comment/Comment";
 import { Avatar } from "../avatar/Avatar";
