@@ -1,7 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { ChatsTeardrop } from "phosphor-react";
+import axios from "axios";
+import { useAuth } from "../../auth/AuthProvider";
+import { useNavigate } from 'react-router-dom';
+
 
 export function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const redirectToDashboard = () => {
+    navigate('/dashboard'); 
+  };
+
+
+  const api = axios.create({
+    baseURL: "http://localhost:3000",
+  });
+
+  const loginUser = async (email, password) => {
+    const response = await api.get("/users", {
+      params: { email, password },
+    });
+    if (response.data.length > 0) {
+      return response.data[0];
+    } else {
+      throw new Error("Invalid credentials");
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const user = await loginUser(email, password);
+      login(user); // Log in the user
+      redirectToDashboard();
+    } catch (err) {
+      throw err;
+    }
+  };
+
   return (
     <section>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -13,7 +53,7 @@ export function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleLogin}>
             <div>
               <label
                 htmlFor="email"
@@ -23,10 +63,10 @@ export function Login() {
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
                   type="email"
-                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-white-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -44,10 +84,10 @@ export function Login() {
               </div>
               <div className="mt-2">
                 <input
-                  id="password"
-                  name="password"
                   type="password"
-                  autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-white-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -70,14 +110,14 @@ export function Login() {
               href="/signin"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
-              Crie sua conta 
+              Crie sua conta
             </a>
             <span> ou </span>
             <a
-              href="/"
+              href="/dashboard"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
-               Entrar sem login
+              Entrar sem login
             </a>
           </p>
         </div>
