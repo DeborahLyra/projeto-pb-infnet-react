@@ -1,0 +1,37 @@
+/* src/styles/Profile.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos personalizados para o componente Profile */
+.profile-heading {
+  @apply px-4 sm:px-0 text-base font-semibold leading-7 text-white;
+}
+
+.profile-container {
+  @apply flex gap-5 p-4 flex-col items-center lg:flex-row lg:gap-8;
+}
+
+.profile-image {
+  @apply p-1 lg:self-start inline-block h-20 w-20 rounded-full ring-2 ring-white md:w-40 md:h-40 lg:w-80 lg:h-40;
+}
+
+.profile-info {
+  @apply mt-6 border-t border-gray-100;
+}
+
+.profile-data {
+  @apply px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0;
+}
+
+.profile-label {
+  @apply text-sm font-medium leading-6 text-white;
+}
+
+.profile-value {
+  @apply mt-1 text-sm leading-6 text-white font-semibold sm:col-span-2 sm:mt-0;
+}
+
+.profile-about {
+  @apply px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0;
+}

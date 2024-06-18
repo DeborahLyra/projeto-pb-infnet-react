@@ -1,0 +1,99 @@
+/* src/styles/SignIn.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos personalizados para o componente SignIn */
+.signin-container {
+  @apply flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8;
+}
+
+.signin-heading {
+  @apply sm:mx-auto sm:w-full sm:max-w-sm;
+}
+
+.signin-logo {
+  @apply mx-auto h-24 w-auto;
+}
+
+.signin-title {
+  @apply mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-white;
+}
+
+.signin-form {
+  @apply mt-6 space-y-12 flex flex-col justify-center items-center w-full;
+}
+
+.signin-section {
+  @apply border-b border-white/10 pb-12;
+}
+
+.signin-section-title {
+  @apply text-base font-semibold leading-7 text-white;
+}
+
+.signin-input-label {
+  @apply block text-sm font-medium leading-6 text-white;
+}
+.form-info {
+    @apply mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-max
+}
+.signin-input {
+  @apply block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6;
+}
+
+.signin-about-label {
+  @apply block text-sm font-medium leading-6 text-white;
+}
+
+.signin-about-textarea {
+  @apply block w-full rounded-md border-0 py-1.5 text-black  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-black  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6;
+}
+
+.signin-photo-label {
+  @apply block text-sm font-medium leading-6 text-white;
+}
+
+.signin-photo-upload {
+  @apply flex justify-center rounded-lg border border-dashed border-white/25 px-6 py-10;
+}
+
+.signin-file-upload-label {
+  @apply relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500;
+}
+
+.signin-file-upload-input {
+  @apply sr-only;
+}
+
+.signin-upload-text {
+  @apply pl-1 text-sm leading-6 text-white;
+}
+
+.text-icon {
+    @apply mx-auto h-12 w-12 text-white;
+}
+
+.label-upload {
+    @apply mt-4 flex text-sm leading-6 text-white;
+}
+
+.photo-info {
+    @apply text-xs leading-5 text-white
+}
+
+.signin-upload-info {
+  @apply text-xs leading-5 text-white;
+}
+
+.signin-buttons {
+  @apply mt-6 flex items-center justify-end gap-x-6;
+}
+
+.signin-cancel-button {
+  @apply text-sm font-semibold leading-6 text-white;
+}
+
+.signin-save-button {
+  @apply rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+}

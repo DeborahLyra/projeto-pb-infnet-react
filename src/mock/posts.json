@@ -11,12 +11,12 @@
       { "type": "paragraph", "content": "Fala galeraa 👋" },
       {
         "type": "paragraph",
-        "content": "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"
+        "content": "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no VS Code, evento da Infnet. O nome do projeto é DoctorCare 🚀"
       },
       { "type": "link", "content": "jane.design/doctorcare" },
       { "type": "link", "content": "#novoprojeto" },
-      { "type": "link", "content": "#nlw" },
-      { "type": "link", "content": "#rocketseat" }
+      { "type": "link", "content": "#infnet" }
+     
     ],
     "publishedAt": "2024-04-30T20:20:00.000Z",
     "comments": [
@@ -56,17 +56,16 @@
       { "type": "paragraph", "content": "Fala galeraa 👋" },
       {
         "type": "paragraph",
-        "content": "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"
+        "content": "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no VS Code, evento da Infnet. O nome do projeto é DoctorCare 🚀"
       },
       { "type": "link", "content": "jane.design/doctorcare" },
       { "type": "link", "content": "#novoprojeto" },
-      { "type": "link", "content": "#nlw" },
-      { "type": "link", "content": "#rocketseat" }
+      { "type": "link", "content": "#infnet" }
     ],
     "publishedAt": "2024-03-30T20:20:00.000Z",
     "comments": [
       {
-        "id": 1,
+        "id": 3,
         "comment": "Muito bom !",
         "author": {
           "name": "The Worried Pug",
@@ -77,7 +76,7 @@
         "likeCount": 2
       },
       {
-        "id": 2,
+        "id": 4,
         "comment": "Maravilha!",
         "author": {
           "name": "The Worried Pug",
