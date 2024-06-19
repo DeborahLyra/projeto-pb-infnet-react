@@ -112,13 +112,6 @@ export function Login() {
             >
               Crie sua conta
             </a>
-            <span> ou </span>
-            <a
-              href="/dashboard"
-              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-            >
-              Entrar sem login
-            </a>
           </p>
         </div>
       </div>
