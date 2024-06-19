@@ -4,7 +4,6 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChatsTeardrop } from "phosphor-react";
 import { useAuth } from "../../auth/AuthProvider";
-import { Link } from "react-router-dom";
 
 export function Header() {
   const { logout } = useAuth();
@@ -19,7 +18,10 @@ export function Header() {
     { name: "Dashboard", href: "/dashboard", current: true },
     { name: "Ranking", href: "/ranking", current: false },
   ];
-
+  const userNavigation = [
+    { name: "Seu perfil", href: "/profile" },
+    { name: "Sair", href: "/login" },''
+  ];
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -65,6 +67,7 @@ export function Header() {
                       <BellIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
 
+              
                     <Menu as="div" className="relative ml-3">
                       <div>
                         <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -87,22 +90,22 @@ export function Header() {
                         leaveTo="transform opacity-0 scale-95"
                       >
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                          <a
-                            href="/profile"
-                            className={
-                              "block px-4 py-2 text-sm text-gray-700"
-                            }
-                          >
-                            Meu Perfil
-                          </a>
-                          <Link  onClick={logout} to="/login">
-                          <button
-                            onClick={logout}
-                            className={"block px-4 py-2 text-sm text-gray-700"}
-                          >
-                            Sair
-                          </button>
-                          </Link>
+                          {userNavigation.map((item) => (
+                            <Menu.Item key={item.name}>
+                              {({ active }) => (
+                                <a
+                                  onClick={item.name == 'Sair'? logout : null}
+                                  href={item.name != 'Sair'? item.href : null}
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  {item.name}
+                                </a>
+                              )}
+                            </Menu.Item>
+                          ))}
                         </Menu.Items>
                       </Transition>
                     </Menu>
@@ -170,9 +173,10 @@ export function Header() {
                 <div className="mt-3 space-y-1 px-2">
                   {userNavigation.map((item) => (
                     <Disclosure.Button
+                      onClick={item.name == 'Sair'? logout : null}
                       key={item.name}
                       as="a"
-                      href={item.href}
+                      href={item.name != 'Sair'? item.href : null}
                       className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                     >
                       {item.name}
